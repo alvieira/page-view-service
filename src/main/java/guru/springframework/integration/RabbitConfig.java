@@ -1,8 +1,11 @@
 package guru.springframework.integration;
 
-import guru.springframework.domain.PageView;
-import guru.springframework.model.events.PageViewEvent;
-import guru.springframework.repositories.PageViewsRepository;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+
+import javax.xml.bind.JAXB;
+
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
@@ -11,16 +14,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.amqp.inbound.AmqpInboundChannelAdapter;
 import org.springframework.integration.annotation.ServiceActivator;
-import org.springframework.integration.dsl.channel.MessageChannels;
+import org.springframework.integration.dsl.MessageChannels;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
 import org.springframework.messaging.MessagingException;
 
-import javax.xml.bind.JAXB;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
+import guru.springframework.domain.PageView;
+import guru.springframework.model.events.PageViewEvent;
+import guru.springframework.repositories.PageViewsRepository;
 
 /**
  * Created by jt on 2/23/17.
